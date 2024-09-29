@@ -1,0 +1,241 @@
+
+
+  
+  /* navbar */
+  .navbar {
+    background-color: rgb(245 250 255);
+    padding: 10px 20px;
+    display: flex;
+     justify-content: space-between;
+    align-items: center;
+    min-height: 70px;
+    color: black;
+    font-size: 18px;
+    width: 100%;
+  }
+  
+  .logoContainer{
+    display: flex;
+    align-items: center;
+  }
+  
+  .logoImages{
+    height: 70px;
+    width: 70px;;
+  }
+  /* logo  */
+
+  .LogoNameContainer{
+    padding: 0 10px;
+  }
+  .logoName {
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+  
+  }
+  .linkContainer{
+    display: flex;
+    align-items: center;
+  }
+  
+  /* ul  */
+  .navMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    color: black;
+    font-size: 18px;
+    padding: 0px 20px;
+  }
+  .navLink{
+    font-weight: bolder;
+  }
+  .navLink:hover{
+    color: #e25d46;
+    text-decoration: underline;
+  }
+
+
+  .homeButton{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 30px;
+    color: black;
+    font-size: 18px;
+    margin-right: 20px;
+    margin-left: 50px;
+  }
+
+
+  .comicButtonDoner {
+    /* margin-left: 30px; */
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #338b71; 
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px #000;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .comicButtonDoner:hover {
+    background-color: #fff;
+    color: rgb(34, 155, 34);
+    border: 2px solid #338b71;
+    box-shadow: 5px 5px 0px #338b71;
+  }
+  
+  .comicButtonDoner:active {
+    background-color: #fcf414;
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+  
+  .comicButtonLog{
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #e25d46; 
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px #000;
+    transition: all 0.3s ease;
+  }
+  .comicButtonLog:hover{
+    background-color: #fff;
+    color: #e25d46;
+    border: 2px solid #e25d46;
+    box-shadow: 5px 5px 0px #e25d46;
+  }
+
+  .comicButtonLog:active{
+    background-color: #fcf414;
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+  /* media queries */
+  
+  @media screen and (max-width: 780px) {
+
+    .navbar{
+      padding: 10px 5px;
+    }
+    /* hamburger */
+    .hamburger {
+      display: block;
+      cursor: pointer;
+    }
+    .bar {
+      background-color: #120f0b;
+      width: 20px;
+      height: 3px;
+      display: block;
+      margin: 5px;
+      transition: 0.3s ease-in-out;
+    }
+  
+    /* adding active class to the bars */
+    .hamburger.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+  
+    .hamburger.active .bar:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+  
+    .hamburger.active .bar:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  
+    /* navMenu */
+    .navMenu {
+      position: absolute;
+      flex-direction: column;
+      gap: 0;
+      top: -315px;
+      left: 0px;
+      text-align: start;
+      width: 100%;
+      transition: 0.7s ease-in-out;
+      background-color: aliceblue;
+      padding: 10px;
+      color: black;
+      z-index: 3;
+    }
+  
+    .navMenu.active {
+      top: 105px;
+    }
+  
+    .navMenu li {
+      margin: 16px 0;
+    }
+  
+    /* Ensure profile and login button are visible */
+    .Profile, .loginButton {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+    }
+  
+    .homeButton {
+      font-size: 16px;
+      margin-right:10px;
+      margin-left: 5px;
+      justify-content: center;
+    }
+  
+    .comicButtonLog {
+      display: none;
+    }
+
+    .LogoNameContainer{
+      width: 140px;
+      padding: 0;
+      padding-left: 5px;
+    }
+  
+    .logoName {
+      font-size: 15px;
+      font-weight: bold;
+      padding: 0;
+    }
+  
+    .logoImages {
+      height: 80px;
+      width: 80px;
+    }
+  
+  }
+  .styles.ProfileContainer {
+    width: inherit;
+    height: inherit;
+    margin: 0px 5px;
+  }  
+
+
+  .ProfileContainer {
+    display: flex; /* Ensure it is visible */
+    justify-content: center; /* Center it on the screen */ /* Add some margin if needed */
+  }
+  
+  /* .Profile {
+    height: 20px;
+    width: 5px; 
+  } */
+
+  .loginButton {
+    display: flex; /* Ensure the login button is visible */
+  }

@@ -1,0 +1,224 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 90%;;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensures no extra scrollbars */
+   
+  }
+  
+  /* Background Rectangle */
+  .backgroundRectangle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35%;
+    height: 100%;
+    background-color: #e25d46; /* Light blue color */
+    z-index: 1; /* Behind the content */
+  }
+  
+  /* Main Content Styling */
+  .backgourndBox {
+    z-index: 1; /* In front of the background */
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 75%;
+    height: 100%;
+  }
+  .contint{
+    position: relative;
+    width: 100%;
+    height: 90%; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden; /* Ensures no extra scrollbars */
+    z-index: 2;
+  }
+
+  .writtenContint{
+  width: 60%;
+  padding: 50px;
+  display: flex;
+  align-items: start;
+  height: 90%;
+  flex-direction: column;
+  background-color: white;
+  }
+
+  .imageContint{
+    width: 40%;
+    padding-top: 40px;
+    padding-left: 70px;
+    height: 90%;
+  }
+
+  .mainHeading{
+    font-size: xxx-large;
+    color: #000;
+  }
+
+  .mainSubHeading{
+    margin-top: 30px;
+    font-size: large;
+    color: #000;
+  }
+
+  .buttonContainer{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+    gap: 30px
+  }
+
+  .comicButtonDonate {
+    width: 130%;
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #338b71; 
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px #000;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .comicButtonDonate:hover {
+    background-color: #fff;
+    color: rgb(34, 155, 34);
+    border: 2px solid #338b71;
+    box-shadow: 5px 5px 0px #338b71;
+  }
+  
+  .comicButtonDonate:active {
+    background-color: #fcf414;
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+
+  .comicButtonLog{
+    width: 150%;
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #e25d46; 
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px #000;
+    transition: all 0.3s ease;
+  }
+  .comicButtonLog:hover{
+    background-color: #fff;
+    color: #e25d46;
+    border: 2px solid #e25d46;
+    box-shadow: 5px 5px 0px #e25d46;
+  }
+
+  .comicButtonLog:active{
+    background-color: #fcf414;
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+
+  .middleContainer{
+    width: 100%;
+  }
+  .middleBottomContainer{
+    height: 100px;
+    width: 100%;
+    background-color: aqua;
+  }
+  .CountingSction {
+    background-image: url('/children-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: row;;
+    justify-content: space-evenly;
+    padding: 15px 0;
+    background-color: #333;
+    color: white;
+    height: 150px;
+    width: 100%;
+  }
+  .CountInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  .CountNumber{
+    font-size: x-large;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+    color: #e25d46;
+  }
+  .CountLable{
+    font-size: larger;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #fff;
+  }
+  .BottomBox{
+    height: 150px;
+    width: 100%;
+    background-color: #e25d46;
+  }
+
+  /* Responsive Adjustments */
+  @media screen and (max-width: 768px) {
+    .backgroundRectangle {
+      width: 35%; 
+    }
+    .backgourndBox{
+      width: 65%;
+    }
+    .SwiperMobile{
+      display: none;
+    }
+    .comicButtonLog{
+    opacity: 1;
+    cursor: pointer;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .backgroundRectangle {
+      width: 30%; 
+    }
+    .writtenContint{
+      width: 100%;
+    }
+    .imageContint{
+      display: none;
+    }
+    .backgourndBox{
+      width: 70%;
+    }
+  .SwiperDiv{
+    display: none;
+  }
+  .comicButtonLog{
+    width: 120%;
+  }
+  .comicButtonDonate{
+    width: 110%;
+  }
+  }
+  
