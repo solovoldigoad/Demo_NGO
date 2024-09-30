@@ -1,8 +1,9 @@
 import { DefaultSession, NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
-import { User } from '@/models/User';
+import { User as MongoUser } from '@/models/User';
 import dbConnect from '@/lib/mongodb';
+import { JWT } from 'next-auth/jwt';
 
 // Extend the NextAuth session type to include `id` and `isAdmin`
 declare module 'next-auth' {
@@ -39,23 +40,22 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({
-      user,
-      account,
-    }: {
-      user: { name: string; email: string; image: string };
-      account: { provider: string };
-    }) {
+    async signIn({ user, account }) {
       await dbConnect();
 
-      if (account.provider === 'google' || account.provider === 'facebook') {
-        const existingUser = await User.findOne({ email: user.email });
+      // Use MongoUser to access user properties
+      const userEmail = user.email || ''; // Default value if undefined
+      const userName = user.name || ''; // Default value if undefined
+      const userImage = user.image || ''; // Default value if undefined
+
+      if (account?.provider === 'google' || account?.provider === 'facebook') {
+        const existingUser = await MongoUser.findOne({ email: userEmail });
 
         if (!existingUser) {
-          const newUser = new User({
-            username: user.name,
-            email: user.email,
-            image: user.image,
+          const newUser = new MongoUser({
+            username: userName,
+            email: userEmail,
+            image: userImage,
             provider: account.provider,
             isVerified: true,
           });
@@ -68,9 +68,8 @@ export const authOptions: NextAuthOptions = {
     async session({ session }) {
       await dbConnect();
 
-      // Ensure session.user exists before querying
       if (session?.user?.email) {
-        const existingUser = await User.findOne({ email: session.user.email });
+        const existingUser = await MongoUser.findOne({ email: session.user.email });
 
         if (existingUser) {
           session.user.id = existingUser._id.toString(); // Attach the user ID
@@ -78,16 +77,10 @@ export const authOptions: NextAuthOptions = {
         }
       }
 
-      return session; // Return the updated session
+      return session;
     },
 
-    async jwt({
-      token,
-      user,
-    }: {
-      token: { id?: string; isAdmin?: boolean };
-      user?: { id: string; isAdmin: boolean };
-    }) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id; // Attach user ID to the token
         token.isAdmin = user.isAdmin; // Attach admin status to the token
@@ -95,8 +88,7 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
 
-    async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
-      // Redirect to the dashboard after sign up or sign in
+    async redirect({ url, baseUrl }) {
       if (url === '/api/auth/SignUp' || url === '/api/auth/Signin') {
         return '/Layout/dashboard'; // Your dashboard page
       }
