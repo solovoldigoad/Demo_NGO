@@ -1,27 +1,19 @@
-import { Resend } from 'resend';
-import { EmailTemplate } from '@/components/email-template';
+import { NextResponse } from 'next/server';
+import { SendVerificationEmail } from '@/lib/emailService'; // Assuming this is the right path
 
-// Initialize Resend service
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// SendVerificationEmail function
-export async function SendVerificationEmail(username: string, email: string, otp: string) {
+export async function POST(request: Request) {
   try {
-    // Use the resend API to send an email with the OTP
-    const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev', // Update this with your actual sender email
-      to: [email], // Send to the user's email
-      subject: 'Verify Your Account - NGO', // Customize your email subject
-      react: EmailTemplate({ username, email, userOtp: otp, emailType: 'VERIFY' }), // Pass OTP to template
-    });
-    if (error) {
-      console.log('Error sending email:', error);
-      return;
-    }
+    const { username, email, otp } = await request.json();
 
-    console.log('Verification email sent:', data);
+    if (!username || !email || !otp) {
+      return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
+    }
+    // Call the email sending function
+    await SendVerificationEmail(username, email, otp);
+    
+    return NextResponse.json({ message: 'Verification email sent successfully' }, { status: 200 });
   } catch (error) {
-    console.log('Error:', error);
+    console.error('Error in sending verification email:', error);
+    return NextResponse.json({ message: 'Error sending email' }, { status: 500 });
   }
 }
-
