@@ -3,7 +3,6 @@ import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 import { User as MongoUser } from '@/models/User';
 import dbConnect from '@/lib/mongodb';
-import { JWT } from 'next-auth/jwt';
 
 // Extend the NextAuth session type to include `id` and `isAdmin`
 declare module 'next-auth' {
