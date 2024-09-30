@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { SendVerificationEmail } from '@/lib/emailService'; // Assuming this is the right path
+import { SendVerificationEmail } from '@/lib/emailService'; // Import your email sending function
 
 export async function POST(request: Request) {
   try {
@@ -8,6 +8,7 @@ export async function POST(request: Request) {
     if (!username || !email || !otp) {
       return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
     }
+
     // Call the email sending function
     await SendVerificationEmail(username, email, otp);
 
@@ -17,5 +18,3 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: 'Error sending email' }, { status: 500 });
   }
 }
-export { SendVerificationEmail };
-
