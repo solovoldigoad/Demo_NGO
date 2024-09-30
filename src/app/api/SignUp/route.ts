@@ -4,7 +4,7 @@ import { User } from '@/models/User';
 import dbConnect from '@/lib/mongodb';
 
 import crypto from 'crypto'
-import { SendVerificationEmail } from '../send/route';
+import { SendVerificationEmail } from '@/lib/emailService';
 
 export async function POST(request: NextRequest) {
 try {
