@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 
 const LoginPage: React.FC = () => {
   const router = useRouter()
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin] = useState(true);
   const [isUser, setIsUser] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -1,5 +1,3 @@
-
-
 import NextAuth, { NextAuthOptions, DefaultSession } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
@@ -29,10 +27,18 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account }: { user: any, account: any }, req: NextApiRequest, res: NextApiResponse) {
+    async signIn({
+      user,
+      account,
+    }: {
+      user: { name: string; email: string; image: string };
+      account: { provider: string };
+    }) {
       await dbConnect();
+
       if (account.provider === 'google' || account.provider === 'facebook') {
-        let existingUser = await User.findOne({ email: user.email });
+        const existingUser = await User.findOne({ email: user.email });
+
         if (!existingUser) {
           const newUser = new User({
             username: user.name,
@@ -47,7 +53,7 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
 
-    async session({ session, token }) {
+    async session({ session }: { session: any }) {
       await dbConnect();
 
       // Ensure session.user exists before querying
@@ -63,14 +69,14 @@ export const authOptions: NextAuthOptions = {
       return session; // Return the updated session
     },
 
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: any; user?: { id: string } }) {
       if (user) {
         token.id = user.id; // Attach user ID to the token
       }
       return token;
     },
 
-    async redirect({ url, baseUrl }) {
+    async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
       // Redirect to the dashboard after sign up or sign in
       if (url === '/api/auth/SignUp' || url === '/api/auth/Signin') {
         return '/Layout/dashboard'; // Your dashboard page
