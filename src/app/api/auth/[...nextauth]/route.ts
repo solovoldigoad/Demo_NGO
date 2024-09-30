@@ -3,7 +3,6 @@ import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 import { User } from '@/models/User';
 import dbConnect from '@/lib/mongodb';
-import { NextApiRequest, NextApiResponse } from 'next';
 
 // Extend the NextAuth session type to include `id` and `isAdmin`
 declare module 'next-auth' {
@@ -12,6 +11,18 @@ declare module 'next-auth' {
       id: string;
       isAdmin: boolean;
     } & DefaultSession['user'];
+  }
+
+  interface User {
+    id: string;
+    isAdmin: boolean;
+  }
+}
+
+declare module 'next-auth/jwt' {
+  interface JWT {
+    id: string;
+    isAdmin: boolean;
   }
 }
 
@@ -53,7 +64,7 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
 
-    async session({ session }: { session: any }) {
+    async session({ session }) {
       await dbConnect();
 
       // Ensure session.user exists before querying
@@ -61,7 +72,7 @@ export const authOptions: NextAuthOptions = {
         const existingUser = await User.findOne({ email: session.user.email });
 
         if (existingUser) {
-          session.user.id = existingUser._id; // Attach the user ID
+          session.user.id = existingUser._id.toString(); // Attach the user ID
           session.user.isAdmin = existingUser.isAdmin; // Attach admin status
         }
       }
@@ -69,9 +80,16 @@ export const authOptions: NextAuthOptions = {
       return session; // Return the updated session
     },
 
-    async jwt({ token, user }: { token: any; user?: { id: string } }) {
+    async jwt({
+      token,
+      user,
+    }: {
+      token: { id?: string; isAdmin?: boolean };
+      user?: { id: string; isAdmin: boolean };
+    }) {
       if (user) {
         token.id = user.id; // Attach user ID to the token
+        token.isAdmin = user.isAdmin; // Attach admin status to the token
       }
       return token;
     },
