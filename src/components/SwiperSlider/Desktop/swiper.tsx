@@ -42,13 +42,13 @@ const Swip: React.FC = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img src="new5.png" alt="Nature 5" />
-          <h2>Ronnie Screwvala's Swades Foundation files draft prospectus at SSE</h2>
+          <h2>Ronnie Screwvalas Swade&apos;s Foundation files draft prospectus at SSE</h2>
           <p>The not-for-profit Swades Foundation is founded by Entrepreneurs and investors Ronnie and Zarina Screwvala</p>
         </SwiperSlide>
         <SwiperSlide>
           <img src="new2.png" alt="new2.png" />
           <h2>Electoral bonds case: Supreme Court to hear contempt plea on March 11</h2>
-          <p>Advocate Prashant Bhushan, appearing for ADR, urged the bench headed by Chief Justice of India DY Chandrachud to hear the plea on 11 March along with SBI's application</p>
+          <p>Advocate Prashant Bhushan, appearing for ADR, urged the bench headed by Chief Justice of India DY Chandrachud to hear the plea on 11 March along with SBI&apos;s application</p>
         </SwiperSlide>
         <SwiperSlide>
           <img src="new3.png" alt="Nature 3" />

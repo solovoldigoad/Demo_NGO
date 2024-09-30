@@ -16,7 +16,6 @@ const LoginPage: React.FC = () => {
   const [isUser, setIsUser] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
   // Function to handle user sign-in
   const handleSignIn = async (e: React.FormEvent) => {
@@ -45,8 +44,6 @@ const LoginPage: React.FC = () => {
     }
   };
 
-  const toggleMode = () => setIsLogin(!isLogin);
-  const toggleModeUser = () => setIsUser(!isUser);
 
   const handleUserTypeChange = (type: 'user' | 'admin') => {
     setIsUser(type === 'user');
@@ -160,10 +157,9 @@ const LoginPage: React.FC = () => {
                     </Button>
                   </div>
                 </div>
-
                 <div className="mt-6 text-center">
                   <p className="text-sm text-gray-500">
-                    Don't have an account?
+                    Don&apos;t have an account?
                     <Link href='/Layouts/SignUp'>
                     <button className="font-bold text-green-600 hover:underline text-base">
                       Sign Up
@@ -178,5 +174,4 @@ const LoginPage: React.FC = () => {
     </div>
   );
 };
-
 export default LoginPage;

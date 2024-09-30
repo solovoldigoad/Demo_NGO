@@ -4,7 +4,6 @@ import { User } from '@/models/User';
 import dbConnect from '@/lib/mongodb';
 
 import crypto from 'crypto'
-import { EmailTemplate } from '@/components/email-template';
 import { SendVerificationEmail } from '../send/route';
 
 export async function POST(request: NextRequest) {
@@ -47,7 +46,7 @@ try {
     saveUser
   })
 
-} catch (error: any) {
-    return NextResponse.json({error: error.message}, {status: 500})
+} catch (error) {
+    return NextResponse.json({error}, {status: 500})
 }
 }

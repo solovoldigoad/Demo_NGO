@@ -1,7 +1,7 @@
 // DonationForm.tsx
 import React, { useState } from 'react';
 import './Money.css';
-import { style } from 'framer-motion/client';
+
 import Link from 'next/link';
 
 const MoneyDonationForm: React.FC = () => {

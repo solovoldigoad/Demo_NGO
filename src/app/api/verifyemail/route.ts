@@ -22,8 +22,8 @@ export async function POST(req: Request) {
     await user.save(); // Save the updated user in the database
 
     return NextResponse.json({ message: 'Email verified successfully', success: true });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error verifying email:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error}, { status: 500 });
   }
 }

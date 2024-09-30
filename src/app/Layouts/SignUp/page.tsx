@@ -1,14 +1,14 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@radix-ui/react-label';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
-import { AwardIcon, Facebook, Mail } from 'lucide-react';
+import { Facebook, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { signIn  } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
+
 const SignUpPage: React.FC = () => {
   const router = useRouter();
   const [isUser, setIsUser] = useState(true);

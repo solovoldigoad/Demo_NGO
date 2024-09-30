@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 interface VerificationEmailProps {
-    username: String,
-    userOtp: String
-    emailType: String,
-    email: String
+    username: string,
+    userOtp: string
+    emailType: string,
+    email: string
 }
 
-export function EmailTemplate({ username , email, emailType, userOtp }: VerificationEmailProps) {
+export function EmailTemplate({ username ,userOtp }: VerificationEmailProps) {
   return (
     <div
       style={{

@@ -6,7 +6,7 @@ const AboutUsPage: React.FC = () => {
     <div>
     <section className="about-section">
       <h2>About Us</h2>
-      <p>Our NGO's company and culture are crafted, not cobbled, for a delightful impact on society.</p>
+      <p>Our NGO&apos;s company and culture are crafted, not cobbled, for a delightful impact on society.</p>
     </section>
     <section className="mission-section">
       <div className="mission-image">
@@ -23,10 +23,10 @@ const AboutUsPage: React.FC = () => {
       <div className="mission-text">
         <h3>Our Story</h3>
         <p>
-            Founded in 2004, our NGO focuses on changing the way communities receive help and support. Over the years, we've helped thousands of individuals.
+            Founded in 2004, our NGO focuses on changing the way communities receive help and support. Over the years, we&apos;ve helped thousands of individuals.
           </p>
           <p>
-            We're dedicated to expanding our impact and providing better opportunities through our unique, people-centered approach.
+            We&apos;re dedicated to expanding our impact and providing better opportunities through our unique, people-centered approach.
           </p>
       </div>
       <div className="mission-image">

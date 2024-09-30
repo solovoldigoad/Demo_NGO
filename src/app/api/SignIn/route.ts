@@ -1,6 +1,5 @@
 import { NextResponse , NextRequest } from 'next/server';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import { User } from '@/models/User';
 import dbConnect from '@/lib/mongodb';
 
@@ -22,7 +21,7 @@ try {
     }
     const response = NextResponse.json({ message: "Login successful" , success: true }, { status: 200 });
     return response;
-} catch (error : any) {
-  return NextResponse.json({error: error.message}, {status: 500})
+} catch (error) {
+  return NextResponse.json({error}, {status: 500})
 }
 }

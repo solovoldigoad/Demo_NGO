@@ -3,15 +3,13 @@
 "use client";
 
 import { useState, useRef } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation'; // Import for client-side navigation and params
+import { useRouter } from 'next/navigation'; // Import for client-side navigation and params
 import axios from 'axios';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { NextResponse } from 'next/server';
-import { col } from 'framer-motion/client';
 
 const OTPVerification = () => {
   const router = useRouter();
@@ -46,10 +44,10 @@ const OTPVerification = () => {
       try {
         if (enteredOtp) {
           // Verify OTP via backend with the token
-          const response = await axios.post("/api/verifyemail", { otp: enteredOtp }); // Correct POST request
+          await axios.post("/api/verifyemail", { otp: enteredOtp }); // Correct POST request
           router.push('/Layouts/Login'); // Redirect on success
         }
-      } catch (error: any) {
+      } catch (error) {
         console.log("invaid otp" , error)
       }
     } else {

@@ -108,7 +108,7 @@ export default function DonationForm() {
             <p className="text-black font-thin">
               48,04,484 meals across 102 municipal schools improved classroom
               attendance by up to 22% in 2021-23. You can help us improve more
-              such children's education and healthcare by donating online.
+              such children&apos;s education and healthcare by donating online.
             </p>
           </div>
           <div className="flex-shrink-0">
